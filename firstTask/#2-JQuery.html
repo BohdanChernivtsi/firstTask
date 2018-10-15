@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        h2 {
+            margin: 100px;
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
+            float: right;
+        }
+
+        li {
+            /* border: 1px solid red;   //- border for uderstanding nesting */
+            width: 300px;
+            height: 120px;
+            font-weight: 900;
+            font-size: 3em;
+        }
+
+        .clear-fix {
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>List of Users</h2>
+    <ul id="here"></ul>
+    <script>
+        $.get("https://api.github.com/users", function (arr) {
+            for (let i = 0; i < arr.length; i++) {
+                jQuery('<li/>', {
+                    id: i,
+                    class: 'clear-fix',
+                    html: arr[i].id
+                }).appendTo('#here')
+                let address = "#" + i
+                //$(address).text = arr[i].id
+
+
+                jQuery('<img/>', {
+                    src: arr[i]['avatar_url']
+                }).appendTo(address)
+
+
+
+                // outputs <li class="clear-fix" id ="1">1 <img src="#"></li>
+                //         <li class="clear-fix" id ="2">2 <img src="#"></li>
+                //         <li class="clear-fix" id ="3">3 <img src="#"></li>
+            }
+        });
+    </script>
+</body>
+
+</html>

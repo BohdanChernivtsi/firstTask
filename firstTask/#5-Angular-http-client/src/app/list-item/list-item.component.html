@@ -1,0 +1,19 @@
+<h2>List of Users</h2>
+<ul id="here">
+  <li *ngFor="let l of listItems$" class="clear-fix">
+    {{l.id}}
+    <img src="{{l['avatar_url']}}">
+  </li>
+</ul>
+<!-- // outputs
+<li class="clear-fix" id="1">1
+  <img src="#">
+</li>
+//
+<li class="clear-fix" id="2">2
+  <img src="#">
+</li>
+//
+<li class="clear-fix" id="3">3
+  <img src="#">
+</li> -->

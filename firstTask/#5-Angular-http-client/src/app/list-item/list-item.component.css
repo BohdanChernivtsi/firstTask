@@ -1,0 +1,21 @@
+h2 {
+    margin: 100px;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+    float: right;
+}
+
+li {
+    /* border: 1px solid red;   //- border for uderstanding nesting */
+    width: 300px;
+    height: 120px;
+    font-weight: 900;
+    font-size: 3em;
+}
+
+.clear-fix {
+    overflow: auto;
+}

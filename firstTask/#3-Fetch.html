@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <style>
+        h2 {
+            margin: 100px;
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
+            float: right;
+        }
+
+        li {
+            /* border: 1px solid red;   //- border for uderstanding nesting */
+            width: 300px;
+            height: 120px;
+            font-weight: 900;
+            font-size: 3em;
+        }
+
+        .clear-fix {
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>List of Users</h2>
+    <ul id="here"></ul>
+    <script>
+
+        fetch('https://api.github.com/users').then(
+            function (a) {
+                a.text().then(
+                    function (data) {
+                        const arr = JSON.parse(data)
+                        for (let i = 0; i < arr.length; i++) {
+                            let listItem = document.createElement("li")
+                            listItem.innerHTML = arr[i].id
+                            listItem.classList.add("clear-fix")
+                            listItem.id = i
+
+                            let imageItem = document.createElement("img")
+                            imageItem.src = arr[i]['avatar_url']
+
+
+
+                            document.getElementById("here").appendChild(listItem)
+
+                            document.getElementById(i).appendChild(imageItem)
+
+                            // outputs <li class="clear-fix" id ="1">1 <img src="#"></li>
+                            //         <li class="clear-fix" id ="2">2 <img src="#"></li>
+                            //         <li class="clear-fix" id ="3">3 <img src="#"></li>
+                        }
+
+                    })
+
+            })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron" id="here">
+            <h1 class="display-4">List of Users</h1>
+            <hr class="my-4">
+            <!-- <ul id="here"></ul> -->
+
+        </div>
+    </div>
+    <script>
+        $.get("https://api.github.com/users", function (arr) {
+            for (let i = 0; i < arr.length; i++) {
+
+                // <div class="jumbotron" id="here">
+                //   <h1 class="display-4">List of Users</h1>
+                //   <hr class="my-4">
+
+                //   <div *ngFor="let l of listItems$" class="clearfix card-title" id="{{l.id}}" style="width: 18rem;">
+                //     <img src="{{l['avatar_url']}}" class="card-img-top" alt='worker image'>
+                //     <div class="card-body" id="{{l.id+100}}">
+                //       <h5>{{l.id}}</h5>
+                //     </div>
+                //   </div>
+                // </div> 
+
+                let listItem = document.createElement("div")
+                listItem.style = "width: 18rem;"
+                listItem.classList.add("clearfix")
+                listItem.id = i
+                document.getElementById("here").appendChild(listItem)
+
+                let imageItem = document.createElement("img")
+                imageItem.src = arr[i]['avatar_url']
+                imageItem.classList.add("card-img-top")
+                imageItem.alt = "worker image"
+                document.getElementById(i).appendChild(imageItem)
+
+                let listNameCon = document.createElement("div")
+                listNameCon.classList.add("card-body")
+                listNameCon.id = i + 100
+                document.getElementById(i).appendChild(listNameCon)
+
+                let listName = document.createElement("h5")
+                listItem.classList.add("card-title")
+                listName.innerHTML = arr[i].id
+                document.getElementById(i + 100).appendChild(listName)
+            }
+        });
+    </script>
+</body>
+
+</html>
